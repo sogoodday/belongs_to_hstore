@@ -16,11 +16,11 @@ module BelongsToHstore
         key = options[:foreign_key] || "#{name}_id"
         key_type = key.gsub(/_id$/, '_type')
 
-        store_accessor store_attribute, key.to_s
+        hstore_accessor store_attribute, key.to_s
         self.belongs_to_hstore_attributes[key.to_s]= Integer
 
         if options[:polymorphic]
-          store_accessor store_attribute, key_type
+          hstore_accessor store_attribute, key_type
           self.belongs_to_hstore_attributes[key_type]= String
         end
 
